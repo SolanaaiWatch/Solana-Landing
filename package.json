@@ -9,13 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-pdf-viewer/core": "^3.12.0",
     "aos": "^2.3.4",
+    "core-js": "^3.37.1",
     "framer-motion": "^11.2.10",
     "gsap": "^3.12.5",
     "next": "14.2.4",
+    "pdfjs-dist": "^3.4.120",
     "react": "^18",
     "react-dom": "^18",
-    "react-pdf": "^9.0.0",
     "sass": "^1.77.5"
   },
   "devDependencies": {
