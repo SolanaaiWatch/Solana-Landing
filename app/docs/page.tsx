@@ -27,7 +27,27 @@ const Docs = () => {
           </div>
         </Worker>
       </div>
-      <div className="pdfBoxRes"></div>
+      <div className="pdfBoxRes">
+        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+          <div
+            style={{
+              marginTop: "8em",
+              background: "#000",
+              //width: "440px",
+
+              width: "100%",
+              height: "100vh",
+            }}
+          >
+            <Viewer
+              // defaultScale={1}
+              // defaultScale={0.5}
+              // defaultScale={SpecialZoomLevel.PageFit}
+              fileUrl="/solanawatch.pdf"
+            />
+          </div>
+        </Worker>
+      </div>
     </>
   );
 };
