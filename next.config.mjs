@@ -1,4 +1,4 @@
-import "./polyfills.mjs";
+//import "./polyfills.mjs";
 /** @type {import('next').NextConfig} */
 const nextConfig = {};
 

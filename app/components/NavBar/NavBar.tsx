@@ -49,8 +49,12 @@ const NavBar = () => {
             <Link href="#">
               <p>SolWatch Experience</p>
             </Link>
+
             <Link href="#">
               <p>Contact</p>
+            </Link>
+            <Link href="/docs">
+              <p>Docs</p>
             </Link>
           </div>
           <div className={style.btn}>
@@ -90,8 +94,12 @@ const NavBar = () => {
             <Link href="#">
               <p>SolWatch Experience</p>
             </Link>
+
             <Link href="#">
               <p>Contact</p>
+            </Link>
+            <Link href="/docs">
+              <p>Docs</p>
             </Link>
           </div>
         </div>
