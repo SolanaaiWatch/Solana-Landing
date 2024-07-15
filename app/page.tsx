@@ -1,4 +1,5 @@
 import HomePage from "./home/page";
+import Terms from "./terms/page";
 
 export default function Home() {
   return (
@@ -6,6 +7,7 @@ export default function Home() {
     // </main>
     <>
       <HomePage />
+      
     </>
   );
 }

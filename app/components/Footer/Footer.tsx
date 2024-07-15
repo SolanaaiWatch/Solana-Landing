@@ -3,7 +3,7 @@ import style from "./Footer.module.scss";
 import Link from "next/link";
 import Logo from "@/public/logo.svg";
 import Image from "next/image";
-
+import Terms from "@/app/terms/page";
 import Tg from "./tg.svg";
 import Discord from "./discord.svg";
 import X from "./x.svg";
@@ -20,6 +20,9 @@ const Footer = () => {
               </Link>
               <Link href="#">
                 <p>SolWatch Experience</p>
+              </Link>
+              <Link href="/terms">
+                <p>T & C</p>
               </Link>
               <Link href="#">
                 <p>About</p>
