@@ -3,7 +3,7 @@ import style from "./Footer.module.scss";
 import Link from "next/link";
 import Logo from "@/public/logo.svg";
 import Image from "next/image";
-import Terms from "@/app/terms/page";
+import Terms from "@/app/privacy-policy/page";
 import Tg from "./tg.svg";
 import Discord from "./discord.svg";
 import X from "./x.svg";
@@ -14,6 +14,7 @@ const Footer = () => {
       <div className={style.container}>
         <div className={style.content}>
           <div className={style.footerTxt}>
+            <div>
             <div className={style.links}>
               <Link href="#">
                 <p>Features</p>
@@ -21,13 +22,19 @@ const Footer = () => {
               <Link href="#">
                 <p>SolWatch Experience</p>
               </Link>
-              <Link href="/terms">
-                <p>T & C</p>
-              </Link>
               <Link href="#">
                 <p>About</p>
               </Link>
             </div>
+            <div className={style.privacyAndTermsContainer}>
+              <Link href="/terms">
+                <p>Terms Of Use </p>
+              </Link>
+              <Link href="/privacy-policy" className={style.privacy}>
+                <p>Privacy Policy</p>
+              </Link>
+          </div>
+          </div>
             <div className={style.logoBx}>
               <Image src={Logo} alt="logo" />
               <p>

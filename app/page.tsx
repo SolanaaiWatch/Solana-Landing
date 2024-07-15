@@ -1,5 +1,5 @@
 import HomePage from "./home/page";
-import Terms from "./terms/page";
+import Terms from "./privacy-policy/page";
 
 export default function Home() {
   return (

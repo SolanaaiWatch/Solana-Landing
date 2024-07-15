@@ -1,12 +1,12 @@
-import './terms.css'
+import './privacy.css'
 
 
-export default function Terms(){
+export default function PrivacyPolicy(){
     return(
         <div className='policy-container'>
             <div className='policy-headers'>
             <h1 className="policy-header">Privacy Policy for SOLANA WATCH</h1>
-            <h3 className="policiy-date">Effective Date: 10th July 2024 </h3>
+            <h3 className="policy-date">Effective Date: 10th July 2024 </h3>
             </div>
 
             <div className="thanks">
