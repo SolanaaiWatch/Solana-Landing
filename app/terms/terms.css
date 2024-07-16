@@ -1,21 +1,18 @@
-.policy-container{
+.terms-container{
     margin: 17vh auto auto auto; 
     width: 60%;
+
 }
 
-.policy-container div{
-    margin-bottom: 8%;
+.terms-container div {
+    margin-bottom: 6%;
 }
 
-.policy-headers{
+.terms-header{
     text-align: center;
     margin-bottom: 4%;
+    font-size:2rem ;
 }
-
-.policy-header{
-    font-size: 2rem;
-}
-
 
 h2{
     font-size: 1.2rem;
@@ -26,9 +23,10 @@ p{
     color: rgb(219, 217, 217);
 }
 
+
 @media screen and (max-width:1020px){
 
-    .privacy-container{
+    .terms-container{
         width: 80%;
     }
 }
@@ -36,22 +34,24 @@ p{
 
 @media screen and (max-width:480px) {
 
-    .policy-container{
+    .terms-container{
         margin-top: 11vh;
         width:85%;
     }
 
-    .policy-header{
+    .terms-header{
         font-size: 1.2rem;
+        margin-bottom: 1rem;
     }
 
-    .policy-date{
-        font-size: .8em;
-
-    }
     
     h2{
         font-size: 1.1rem;
         font-weight: 600;
+    }
+
+    p{
+        font-size: 14px;
+
     }
 }
