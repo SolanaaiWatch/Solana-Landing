@@ -7,6 +7,7 @@ import Terms from "@/app/privacy-policy/page";
 import Tg from "./tg.svg";
 import Discord from "./discord.svg";
 import X from "./x.svg";
+import { routes } from "@/libs/constants";
 
 const Footer = () => {
   return (
@@ -15,26 +16,26 @@ const Footer = () => {
         <div className={style.content}>
           <div className={style.footerTxt}>
             <div>
-            <div className={style.links}>
-              <Link href="#">
-                <p>Features</p>
-              </Link>
-              <Link href="#">
-                <p>SolWatch Experience</p>
-              </Link>
-              <Link href="#">
-                <p>About</p>
-              </Link>
+              <div className={style.links}>
+                <Link href="#">
+                  <p>Features</p>
+                </Link>
+                <Link href="#">
+                  <p>SolWatch Experience</p>
+                </Link>
+                <Link href="#">
+                  <p>About</p>
+                </Link>
+              </div>
+              <div className={style.privacyAndTermsContainer}>
+                <Link href="/terms">
+                  <p>Terms Of Use </p>
+                </Link>
+                <Link href="/privacy-policy" className={style.privacy}>
+                  <p>Privacy Policy</p>
+                </Link>
+              </div>
             </div>
-            <div className={style.privacyAndTermsContainer}>
-              <Link href="/terms">
-                <p>Terms Of Use </p>
-              </Link>
-              <Link href="/privacy-policy" className={style.privacy}>
-                <p>Privacy Policy</p>
-              </Link>
-          </div>
-          </div>
             <div className={style.logoBx}>
               <Image src={Logo} alt="logo" />
               <p>
@@ -42,13 +43,13 @@ const Footer = () => {
               </p>
             </div>
             <div className={style.socials}>
-              <Link href="#" className={style.social}>
+              <Link target="_blank" href={routes.x} className={style.social}>
                 <Image src={X} alt="x" />
               </Link>
-              <Link href="#" className={style.social}>
+              <Link target="_blank" href={routes.tele} className={style.social}>
                 <Image src={Tg} alt="telegram" />
               </Link>
-              <Link href="#" className={style.social}>
+              <Link target="_blank" href="#" className={style.social}>
                 <Image className={style.disc} src={Discord} alt="discord" />
               </Link>
             </div>
