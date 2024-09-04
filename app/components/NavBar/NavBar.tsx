@@ -1,36 +1,44 @@
 "use client";
-import React, { useEffect, useRef } from "react";
-import style from "./NavBar.module.scss";
-import Link from "next/link";
+import { gsap, Power3 } from "gsap";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import Logo from "./logo.svg";
-import { gsap, Power3, Expo } from "gsap";
+import style from "./NavBar.module.scss";
 
 const NavBar = () => {
-  const menu = useRef<any>();
-  const openMenu = useRef<any>();
-  //const closeMenu = useRef<any>();
+  const [isMenuActive, setIsMenuActive] = useState(false);
 
-  const handleToggle = () => {
-    openMenu.current.classList.toggle("active");
-  };
+  const menu = useRef<HTMLDivElement>(null);
+  const openMenu = useRef<SVGSVGElement>(null);
 
-  useEffect(() => {
+  const pathname = usePathname();
+
+  const handleToggle = () => setIsMenuActive((prev) => !prev);
+
+  const hideNavbar = () => setIsMenuActive(false);
+
+  const animateMenu = (isOpen: boolean) => {
+    if (!menu.current) return;
+
     const t1 = gsap.timeline();
     t1.to(menu.current, 1, {
-      left: 0,
+      left: isOpen ? 0 : -innerWidth,
       ease: Power3.easeInOut,
       duration: 0.09,
     });
+  };
 
-    t1.reverse();
-    openMenu.current.onclick = function () {
-      t1.reversed(!t1.reversed());
-    };
-    // closeMenu.current.onclick = function () {
-    //   t1.reversed(!t1.reversed());
-    // };
-  }, []);
+  useEffect(() => {
+    if (!openMenu.current) return;
+    openMenu.current.classList.toggle("active", isMenuActive);
+    animateMenu(isMenuActive);
+  }, [isMenuActive]);
+
+  useEffect(() => {
+    setIsMenuActive(false);
+  }, [pathname]);
 
   return (
     <>
@@ -65,8 +73,8 @@ const NavBar = () => {
                 viewBox="0 0 100 100"
                 width="80"
                 //onclick="this.classList.toggle('active')"
-                ref={openMenu}
                 onClick={handleToggle}
+                ref={openMenu}
               >
                 <path
                   className="hline top"
@@ -85,20 +93,20 @@ const NavBar = () => {
       <div className={style.menu} ref={menu}>
         <div className={style.menuContent}>
           <div className={style.menuLinks}>
-            <Link href="#">
+            <Link onClick={hideNavbar} href="/">
               <p>Home</p>
             </Link>
-            <Link href="#">
+            <Link onClick={hideNavbar} href="#">
               <p>Features</p>
             </Link>
-            <Link href="#">
+            <Link onClick={hideNavbar} href="#">
               <p>SolWatch Experience</p>
             </Link>
 
-            <Link href="#">
+            <Link onClick={hideNavbar} href="#">
               <p>Contact</p>
             </Link>
-            <Link href="/docs">
+            <Link onClick={hideNavbar} href="/docs">
               <p>Docs</p>
             </Link>
           </div>
