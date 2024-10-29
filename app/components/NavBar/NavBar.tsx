@@ -2,7 +2,7 @@
 import { gsap, Power3 } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Logo from "./logo.svg";
 import style from "./NavBar.module.scss";
@@ -14,6 +14,7 @@ const NavBar = () => {
   const openMenu = useRef<SVGSVGElement>(null);
 
   const pathname = usePathname();
+  const router = useRouter();
 
   const handleToggle = () => setIsMenuActive((prev) => !prev);
 
@@ -66,7 +67,11 @@ const NavBar = () => {
             </Link>
           </div>
           <div className={style.btn}>
-            <button>Pre-Order</button>
+            <button
+              onClick={() => router.push("https://pre.solanaaiwatch.com/")}
+            >
+              Pre-Order
+            </button>
             <div className={style.hamBox}>
               <svg
                 className="ham hamRotate ham1 menu-open"
