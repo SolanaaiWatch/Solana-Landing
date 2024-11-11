@@ -68,7 +68,6 @@ const NavBar = () => {
           </div>
           <div className={style.btn}>
             <button
-              onClick={() => router.push("https://pre.solanaaiwatch.com/")}
             >
               Pre-Order
             </button>
