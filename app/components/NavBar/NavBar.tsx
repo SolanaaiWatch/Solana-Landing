@@ -1,14 +1,32 @@
 "use client";
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { FormSchema } from "@/lib/auth";
+import { cn } from "@/lib/utils";
+import { useFormik } from "formik";
 import { gsap, Power3 } from "gsap";
+import { Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 import Logo from "./logo.svg";
 import style from "./NavBar.module.scss";
 
 const NavBar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
+  const [openForm, setOpenForm] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   const menu = useRef<HTMLDivElement>(null);
   const openMenu = useRef<SVGSVGElement>(null);
@@ -30,6 +48,32 @@ const NavBar = () => {
       duration: 0.09,
     });
   };
+
+  const formik = useFormik({
+    initialValues: { tele: "", x: "", address: "" },
+    validationSchema: FormSchema,
+    onSubmit: async (values) => {
+      setIsPending(true);
+      try {
+        const res = await fetch("/api/user", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        });
+
+        if (!res.ok) {
+          throw new Error(`${res.status}, ${res.statusText}`);
+        }
+        toast.success('Submit successfully', {className: ""})
+
+      } catch (error: any) {
+        toast.error(`Submit failed ${error.message}`, {className: ""})
+        console.error(error);
+      } finally {
+        setIsPending(false);
+      }
+    },
+  });
 
   useEffect(() => {
     if (!openMenu.current) return;
@@ -67,10 +111,7 @@ const NavBar = () => {
             </Link>
           </div>
           <div className={style.btn}>
-            <button
-            >
-              Pre-Order
-            </button>
+            <button onClick={() => setOpenForm(true)}>Whitelist</button>
             <div className={style.hamBox}>
               <svg
                 className="ham hamRotate ham1 menu-open"
@@ -116,6 +157,97 @@ const NavBar = () => {
           </div>
         </div>
       </div>
+      <AlertDialog open={openForm} onOpenChange={setOpenForm}>
+        <AlertDialogContent
+          className={cn(
+            "w-4/5 max-w-md bg-black/80 rounded-xl border border-[#ffa5001a]"
+          )}
+        >
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-center md:text-xl text-[#21eea3] mb-5">
+              Whitelist
+            </AlertDialogTitle>
+            <AlertDialogDescription asChild>
+              <form onSubmit={formik.handleSubmit}>
+                <div className="flex flex-col gap-6">
+                  <div className="flex flex-col items-start gap-2">
+                    <Label className="mb-1" htmlFor="tele">
+                      Telegram
+                    </Label>
+                    <Input
+                      id="tele"
+                      placeholder="@solanaaiwatch"
+                      required
+                      type="text"
+                      className="bg-gray-800/50 border border-[#ffa5001a] placeholder:text-sm md:placeholder:text-base py-2 h-auto focus-visible:ring-[#b42cf7]"
+                      {...formik.getFieldProps("tele")}
+                    />
+                  </div>
+
+                  <div className="flex flex-col items-start gap-2">
+                    <Label className="mb-1" htmlFor="x">
+                      X
+                    </Label>
+                    <Input
+                      id="x"
+                      placeholder="@SolanaAIWatch"
+                      required
+                      type="text"
+                      className="bg-gray-800/50 border border-[#ffa5001a] placeholder:text-sm md:placeholder:text-base py-2 h-auto focus-visible:ring-[#b42cf7]"
+                      {...formik.getFieldProps("x")}
+                    />
+                  </div>
+                  <div className="flex flex-col items-start gap-2">
+                    <Label className="mb-1 capitalize" htmlFor="address">
+                      Solana address
+                    </Label>
+                    <Input
+                      id="address"
+                      placeholder="Your solana wallet address"
+                      required
+                      type="text"
+                      className="bg-gray-800/50 border border-[#ffa5001a] placeholder:text-sm md:placeholder:text-base py-2 h-auto focus-visible:ring-[#b42cf7]"
+                      {...formik.getFieldProps("address")}
+                    />
+                  </div>
+                  <button
+                    className={cn(
+                      "disabled:opacity-80 text-base font-semibold !w-full mx-auto flex justify-center items-center gap-2",
+                      style.btn__form
+                    )}
+                    disabled={isPending || !(formik.isValid && formik.dirty)}
+                  >
+                    {isPending && <Loader className="animate-spin" />}
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter>
+            <AlertDialogCancel
+            onClick={()=> formik.resetForm()}
+             className="bg-[#dc2626] text-[#fafafa] shadow-sm hover:bg-[#dc2626e6] border-0 rounded-full h-12 text-base font-semibold w-full">
+              Cancel
+            </AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+        className="z-[99999] w-4/5 mx-auto mt-6 md:w-auto"
+      />
     </>
   );
 };

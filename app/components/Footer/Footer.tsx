@@ -1,13 +1,11 @@
-import React from "react";
-import style from "./Footer.module.scss";
-import Link from "next/link";
+import { routes } from "@/lib/constants";
 import Logo from "@/public/logo.svg";
 import Image from "next/image";
-import Terms from "@/app/privacy-policy/page";
-import Tg from "./tg.svg";
+import Link from "next/link";
 import Discord from "./discord.svg";
+import style from "./Footer.module.scss";
+import Tg from "./tg.svg";
 import X from "./x.svg";
-import { routes } from "@/libs/constants";
 
 const Footer = () => {
   return (

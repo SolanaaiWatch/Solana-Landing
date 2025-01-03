@@ -62,7 +62,7 @@ const HomePage = () => {
             >
               <h1>Solana Watch</h1>
               {/* <p>The First AI Wearables of Crypto</p> */}
-              <p>The Premier AI Wearable for the Solana Key Players.</p>
+              <p>The Premier AI Wearable for the Solana Key Players</p>
             </motion.div>
             <motion.div
               className={style.heroImg}
@@ -152,12 +152,9 @@ const HomePage = () => {
               //   //margin: "-200px",
               // }}
             >
-              <h2>Pioneering Crypto Hardware</h2>
+              <h2>Pioneering AI Hardware</h2>
               <p>
-                Experience the cutting-edge fusion of blockchain technology and
-                wearable devices with Solana Watch, enabling seamless
-                transactions and never before seen Ease of access through AI
-                integration.
+              Experience the cutting-edge fusion of blockchain technology and wearable devices with the Solana AI Watch. It enables seamless transactions and unprecedented ease of access through advanced AI integration.
               </p>
             </motion.div>
           </div>
@@ -176,7 +173,7 @@ const HomePage = () => {
                 }}
               >
                 {/* All Your <span>Crypto</span> Needs Only One Watch */}
-                Unmatched <span>Crypto</span> Features in One Device
+                Unmatched <span>AI</span> Features in One Device
               </motion.h2>
               {/* <motion.div
                 className={style.needsImg}
@@ -504,9 +501,6 @@ const HomePage = () => {
               >
                 <Image src={Future} alt="wear the future" placeholder="blur" />
               </motion.div>
-              <motion.div className={style.fBtn}>
-                <button>Pre-Order Now</button>
-              </motion.div>
             </div>
           </div>
 
@@ -517,7 +511,7 @@ const HomePage = () => {
 
             <div className={style.subscribeContent}>
               {/* <h2>Stay in the Loop: Subscribe for Exclusive Updates!</h2> */}
-              <h2>
+              <h2 className="px-4 md:px-0">
                 Stay ahead in the crypto world with Solana Watch. Pre-order now
                 and subscribe for exclusive updates.
               </h2>

@@ -55,20 +55,20 @@ const NeedsToggle = () => {
 
 const data = [
   {
-    title: "AI Trading Assistant",
-    description: `Utilize voice control to set price alerts and develop trading strategies.`,
+    title: "AI Terminal",
+    description: `Integrating multiple AI capabilities into a single device, including an AI trading assistant, AI agent, AI data analysis, and more—experience the power of an AI terminal on your wrist.`,
   },
   {
-    title: "dApp/App Store",
-    description: `Access a diverse range of Solana ecosystem dApps and Web2 applications.`,
+    title: "dApp Store",
+    description: `A native dApp store offering a diverse range of decentralized applications (dApps) from the Solana ecosystem.`,
   },
   {
-    title: "DeFi Integration",
-    description: `Earn crypto rewards and real-life benefits.`,
+    title: "DePIN Protocol",
+    description: `The Digital Resource Networks (DRNs) built on the Solana network. The Solana Watch DePIN protocol establishes a location-independent backend for the cloud, incentivizing users to provide digital resources.`,
   },
   {
-    title: "Smartphone Connectivity",
-    description: `Effortlessly sync and manage messages.`,
+    title: "Token Rewards System",
+    description: `A built-in rewards system for users, users earn token rewards while using SolanaWatch, seamlessly integrated with the Solana blockchain.`,
   },
 ];
 

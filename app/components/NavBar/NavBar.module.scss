@@ -141,3 +141,23 @@
     }
   }
 }
+
+.btn__form {
+  @include btnRegular(50%);
+  &:hover {
+    // background: linear-gradient(
+    //   90deg,
+    //   #b42cf7 0%,
+    //   #9044f9 14%,
+    //   #4576fd 46%,
+    //   #278aff 61%,
+    //   #25afdd 72%,
+    //   #23d1be 84%,
+    //   #21e6aa 94%,
+    //   #21eea3 100%
+    // ); // rm for gr ps
+    background-position: right;
+    background-size: 160% 160%;
+    transform: scale(1.05);
+  }
+}
