@@ -512,8 +512,7 @@ const HomePage = () => {
             <div className={style.subscribeContent}>
               {/* <h2>Stay in the Loop: Subscribe for Exclusive Updates!</h2> */}
               <h2 className="px-4 md:px-0">
-                Stay ahead in the crypto world with Solana Watch. Pre-order now
-                and subscribe for exclusive updates.
+                Stay ahead in the crypto world with Solana Watch.
               </h2>
               <div className={style.subscribeImg}>
                 <Image
