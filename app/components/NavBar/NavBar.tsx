@@ -109,6 +109,9 @@ const NavBar = () => {
             <Link href="/docs">
               <p>Docs</p>
             </Link>
+            <Link href="/dao">
+              <p>DAO</p>
+            </Link>
           </div>
           <div className={style.btn}>
             <button onClick={() => setOpenForm(true)}>Whitelist</button>
@@ -153,6 +156,9 @@ const NavBar = () => {
             </Link>
             <Link onClick={hideNavbar} href="/docs">
               <p>Docs</p>
+            </Link>
+            <Link onClick={hideNavbar} href="/dao">
+              <p>DAO</p>
             </Link>
           </div>
         </div>
