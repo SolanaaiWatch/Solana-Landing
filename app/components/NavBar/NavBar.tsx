@@ -53,6 +53,13 @@ const NavBar = () => {
     initialValues: { tele: "", x: "", address: "" },
     validationSchema: FormSchema,
     onSubmit: async (values) => {
+      const hasSubmitted = JSON.parse(
+        localStorage.getItem("SOLWATCH_WL_SUBMISSION") ?? ""
+      );
+      if (hasSubmitted) {
+        toast.error("You have already submitted your whitelist");
+      }
+
       setIsPending(true);
       try {
         const res = await fetch("/api/user", {
@@ -64,10 +71,10 @@ const NavBar = () => {
         if (!res.ok) {
           throw new Error(`${res.status}, ${res.statusText}`);
         }
-        toast.success('Submit successfully', {className: ""})
-
+        localStorage.setItem("SOLWATCH_WL_SUBMISSION", JSON.stringify(values));
+        toast.success("Submit successfully", { className: "" });
       } catch (error: any) {
-        toast.error(`Submit failed ${error.message}`, {className: ""})
+        toast.error(`Submit failed ${error.message}`, { className: "" });
         console.error(error);
       } finally {
         setIsPending(false);
@@ -233,8 +240,9 @@ const NavBar = () => {
 
           <AlertDialogFooter>
             <AlertDialogCancel
-            onClick={()=> formik.resetForm()}
-             className="bg-[#dc2626] text-[#fafafa] shadow-sm hover:bg-[#dc2626e6] border-0 rounded-full h-12 text-base font-semibold w-full">
+              onClick={() => formik.resetForm()}
+              className="bg-[#dc2626] text-[#fafafa] shadow-sm hover:bg-[#dc2626e6] border-0 rounded-full h-12 text-base font-semibold w-full"
+            >
               Cancel
             </AlertDialogCancel>
           </AlertDialogFooter>
