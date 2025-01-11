@@ -50,20 +50,20 @@ const NavBar = () => {
   };
 
   const formik = useFormik({
-    initialValues: { tele: "", x: "", address: "" },
+    initialValues: { address: "" },
     validationSchema: FormSchema,
     onSubmit: async (values) => {
-      const hasSubmitted = JSON.parse(
-        localStorage.getItem("SOLWATCH_WL_SUBMISSION") as string
-      );
-      if (hasSubmitted) {
-        toast.error("You have already submitted your whitelist");
-        return
-      }
+      // const hasSubmitted = JSON.parse(
+      //   localStorage.getItem("SOLWATCH_WL_SUBMISSION") as string
+      // );
+      // if (hasSubmitted) {
+      //   toast.error("You have already submitted your whitelist");
+      //   return
+      // }
 
       setIsPending(true);
       try {
-        const res = await fetch("/api/user", {
+        const res = await fetch("/api/eligibility", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(values),
@@ -72,10 +72,20 @@ const NavBar = () => {
         if (!res.ok) {
           throw new Error(`${res.status}, ${res.statusText}`);
         }
-        localStorage.setItem("SOLWATCH_WL_SUBMISSION", JSON.stringify(values));
-        toast.success("Submit successfully", { className: "" });
+        // localStorage.setItem("SOLWATCH_WL_SUBMISSION", JSON.stringify(values));
+        const data = await res.json();
+        if (data.eligiblity) {
+          toast.success(
+            "Congratulations! You have been granted whitelist eligibility.\nPlease contact @hazsolana on Telegram to join the whitelist.",{
+              autoClose: 20000,
+              
+            }
+          );
+        } else {
+          toast.error("You're not in the whitelist");
+        }
       } catch (error: any) {
-        toast.error(`Submit failed ${error.message}`, { className: "" });
+        toast.error(`Check wallet failed ${error.message}`);
         console.error(error);
       } finally {
         setIsPending(false);
@@ -122,7 +132,9 @@ const NavBar = () => {
             </Link>
           </div>
           <div className={style.btn}>
-            <button onClick={() => setOpenForm(true)}>Whitelist</button>
+            <button className=" capitalize" onClick={() => setOpenForm(true)}>
+              check eligibility
+            </button>
             <div className={style.hamBox}>
               <svg
                 className="ham hamRotate ham1 menu-open"
@@ -179,12 +191,12 @@ const NavBar = () => {
         >
           <AlertDialogHeader>
             <AlertDialogTitle className="text-center md:text-xl text-[#21eea3] mb-5">
-              Whitelist
+              Check your eligibility
             </AlertDialogTitle>
             <AlertDialogDescription asChild>
               <form onSubmit={formik.handleSubmit}>
                 <div className="flex flex-col gap-6">
-                  <div className="flex flex-col items-start gap-2">
+                  {/* <div className="flex flex-col items-start gap-2">
                     <Label className="mb-1" htmlFor="tele">
                       Telegram
                     </Label>
@@ -210,7 +222,7 @@ const NavBar = () => {
                       className="bg-gray-800/50 border border-[#ffa5001a] placeholder:text-sm md:placeholder:text-base py-2 h-auto focus-visible:ring-[#b42cf7]"
                       {...formik.getFieldProps("x")}
                     />
-                  </div>
+                  </div> */}
                   <div className="flex flex-col items-start gap-2">
                     <Label className="mb-1 capitalize" htmlFor="address">
                       Solana address
@@ -257,11 +269,11 @@ const NavBar = () => {
         closeOnClick={false}
         rtl={false}
         pauseOnFocusLoss
-        draggable
+        draggable={false}
         pauseOnHover
         theme="light"
         transition={Bounce}
-        className="z-[99999] w-4/5 mx-auto mt-6 md:w-auto"
+        className="z-[99999] !w-1/2 mx-auto mt-6 md:w-auto"
       />
     </>
   );

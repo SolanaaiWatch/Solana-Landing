@@ -134,10 +134,11 @@
     margin-right: -15px;
     width: 55%;
     button {
-      @include btnRegular(25vw);
+      @include btnRegular(45vw);
       min-width: 130px;
       max-width: 150px;
       height: 43px;
+      font-size: 14px
     }
   }
 }
