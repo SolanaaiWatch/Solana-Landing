@@ -54,10 +54,11 @@ const NavBar = () => {
     validationSchema: FormSchema,
     onSubmit: async (values) => {
       const hasSubmitted = JSON.parse(
-        localStorage.getItem("SOLWATCH_WL_SUBMISSION") ?? ""
+        localStorage.getItem("SOLWATCH_WL_SUBMISSION") as string
       );
       if (hasSubmitted) {
         toast.error("You have already submitted your whitelist");
+        return
       }
 
       setIsPending(true);
