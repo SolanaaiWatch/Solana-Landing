@@ -140,5 +140,5 @@ canvas.react-pdf__Page__canvas {
 .wallet-adapter-dropdown > .wallet-adapter-button {
   width: auto !important;
   font-family: "Inter" !important;
-
+  min-width: auto !important;
 }
