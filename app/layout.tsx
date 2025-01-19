@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Favicon from "@/public/favicon.ico";
+
 import "./globals.css";
 import "./ham.css";
 import "aos/dist/aos.css";
@@ -8,6 +9,8 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 
 import "@react-pdf-viewer/core/lib/styles/index.css";
+import { WalletConnectionProvider } from "./WalletProvider";
+require("@solana/wallet-adapter-react-ui/styles.css");
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,9 +35,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
-        {children}
-        <Footer />
+        <WalletConnectionProvider>
+          <NavBar />
+          {children}
+          <Footer />
+        </WalletConnectionProvider>
       </body>
     </html>
   );
