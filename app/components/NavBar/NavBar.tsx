@@ -95,7 +95,6 @@ const NavBar = () => {
         setWatchBalance(watchBalance);
       }
     } catch (error: any) {
-      // toast.error(`Fetch $WATCH balance failed`);
       console.error(error);
     } finally {
       setIsFetching(false);
@@ -255,7 +254,7 @@ const NavBar = () => {
                 <Loader className="animate-spin size-10 m-auto" />
               ) : (
                 <form onSubmit={formik.handleSubmit}>
-                  {/* <div className="flex flex-col gap-6">
+                  <div className="flex flex-col gap-6">
                     <div className="flex flex-col items-start gap-2">
                       <Label className="mb-1 capitalize md:text-base leading-tight">
                         Should the team withdraw 300 Sol from DAO fund wallet
@@ -329,7 +328,7 @@ const NavBar = () => {
                       {isPending && <Loader className="animate-spin" />}
                       Submit
                     </button>
-                  </div> */}
+                  </div>
                 </form>
               )}
             </AlertDialogDescription>
