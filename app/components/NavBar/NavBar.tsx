@@ -69,6 +69,8 @@ const NavBar = () => {
   };
 
   const fetchVote = async () => {
+    setIsFetching(true);
+
     try {
       const res = await fetch("/api/vote");
       const data = await res.json();
@@ -76,6 +78,8 @@ const NavBar = () => {
     } catch (error: any) {
       toast.error(`Fetch voting data failed ${error.message}`);
       console.error(error);
+    } finally {
+      setIsFetching(false);
     }
   };
 
@@ -139,10 +143,8 @@ const NavBar = () => {
   });
 
   useEffect(() => {
-    if (publicKey) {
-      fetchBalance();
-    }
-  }, [publicKey]);
+    fetchVote();
+  }, []);
 
   useEffect(() => {
     if (!openMenu.current) return;
@@ -260,74 +262,35 @@ const NavBar = () => {
                         Should the team withdraw 300 Sol from DAO fund wallet
                         for marketing and buyback?
                       </Label>
-                      <RadioGroup
-                        className="w-full"
-                        onValueChange={(value) =>
-                          formik.setFieldValue("answer", value)
-                        }
-                        defaultValue="yes"
-                        {...formik.getFieldProps("answer")}
-                      >
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem
-                            className="data-[state=checked]:bg-[#21eea3] data-[state=checked]:text-[#21eea3] data-[state=checked]:border-[#21eea3]"
-                            value="yes"
-                            id="yes"
-                          />
-                          <Label
-                            className="w-6 md:w-10 md:text-lg"
-                            htmlFor="yes"
-                          >
-                            Yes
-                          </Label>
-                          {progress.yes ? (
-                            <>
-                              <Progress
-                                value={progress.yes}
-                                className="w-[60%] md:w-full"
-                              />
-                              <Label className="">{progress.yes}%</Label>
-                            </>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem
-                            className="data-[state=checked]:bg-[#21eea3] data-[state=checked]:text-[#21eea3] data-[state=checked]:border-[#21eea3]"
-                            value="no"
-                            id="no"
-                          />
-                          <Label
-                            className="w-6 md:w-10 md:text-lg"
-                            htmlFor="no"
-                          >
-                            No
-                          </Label>
-                          {progress.no ? (
-                            <>
-                              <Progress
-                                value={progress.no}
-                                className="w-[60%] md:w-full"
-                              />
-                              <Label className="">{progress.no}%</Label>
-                            </>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                      </RadioGroup>
+                      <div className="flex items-center space-x-2 w-full">
+                        <Label className="w-6 md:w-10 md:text-lg">Yes</Label>
+                        {progress.yes ? (
+                          <>
+                            <Progress
+                              value={progress.yes}
+                              className="w-3/4 md:w-full"
+                            />
+                            <Label className="">{progress.yes}%</Label>
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className="flex items-center space-x-2 w-full">
+                        <Label className="w-6 md:w-10 md:text-lg">No</Label>
+                        {progress.no ? (
+                          <>
+                            <Progress
+                              value={progress.no}
+                              className="w-3/4 md:w-full"
+                            />
+                            <Label className="">{progress.no}%</Label>
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </div>
                     </div>
-                    <button
-                      className={cn(
-                        "disabled:opacity-80 text-base font-semibold !w-full mx-auto flex justify-center items-center gap-2",
-                        style.btn__form
-                      )}
-                      disabled={isPending || watchBalance <= 10000}
-                    >
-                      {isPending && <Loader className="animate-spin" />}
-                      Submit
-                    </button>
                   </div>
                 </form>
               )}
@@ -338,7 +301,6 @@ const NavBar = () => {
             <AlertDialogCancel
               disabled={isPending}
               onClick={() => {
-                formik.resetForm();
                 setProgress((prev) => ({ ...prev, yes: 0, no: 0 }));
               }}
               className="bg-[#dc2626] text-[#fafafa] shadow-sm hover:bg-[#dc2626e6] border-0 rounded-full h-12 text-base font-semibold w-full"
