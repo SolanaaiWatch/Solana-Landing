@@ -40,11 +40,11 @@ const Footer = () => {
               Solana <strong>Watch</strong>{" "}
             </p>
             <p className="hidden md:block absolute !text-base !-bottom-8 !ml-0">
-              3Cg8ETCZCbVi4igJYtDiUffr8pnQKW8vogtZcFN2TYqe
+              BW4Xx7KNmd2xHjNrmvsjGEGQ8ygv9n9fJmdV8fpRpump
             </p>
           </div>
           <p className="text-xs my-4 sm:hidden">
-            3Cg8ETCZCbVi4igJYtDiUffr8pnQKW8vogtZcFN2TYqe
+            BW4Xx7KNmd2xHjNrmvsjGEGQ8ygv9n9fJmdV8fpRpump
           </p>
           <div className={style.socials}>
             <Link target="_blank" href={routes.x} className={style.social}>
