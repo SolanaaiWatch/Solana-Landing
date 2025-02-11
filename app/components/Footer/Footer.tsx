@@ -39,13 +39,13 @@ const Footer = () => {
             <p>
               Solana <strong>Watch</strong>{" "}
             </p>
-            <p className="hidden md:block absolute !text-base !-bottom-8 !ml-0">
+            {/* <p className="hidden md:block absolute !text-base !-bottom-8 !ml-0">
               BW4Xx7KNmd2xHjNrmvsjGEGQ8ygv9n9fJmdV8fpRpump
-            </p>
+            </p> */}
           </div>
-          <p className="text-xs my-4 sm:hidden">
+          {/* <p className="text-xs my-4 sm:hidden">
             BW4Xx7KNmd2xHjNrmvsjGEGQ8ygv9n9fJmdV8fpRpump
-          </p>
+          </p> */}
           <div className={style.socials}>
             <Link target="_blank" href={routes.x} className={style.social}>
               <Image src={X} alt="x" />
